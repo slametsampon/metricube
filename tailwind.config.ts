@@ -1,10 +1,11 @@
 // tailwind.config.js
 
-/** @type {import('tailwindcss').Config} */
-import { fontFamily } from 'tailwindcss/defaultTheme';
-import colors from 'tailwindcss/colors';
 
-export default {
+import type { Config } from 'tailwindcss'
+import { fontFamily } from 'tailwindcss/defaultTheme'
+import colors from 'tailwindcss/colors'
+
+const config: Config = {
   content: [
     './app/**/*.{js,ts,jsx,tsx}',
     './components/**/*.{js,ts,jsx,tsx}',
@@ -25,7 +26,7 @@ export default {
           200: '#80ffeb',
           300: '#4dffe2',
           400: '#1affda',
-          500: '#00ffe0',
+          500: '#00ffe0', // 🌟 Warna utama
           600: '#00c2a8',
           700: '#00877c',
           800: '#005f56',
@@ -36,4 +37,6 @@ export default {
     },
   },
   plugins: [require('@tailwindcss/forms')],
-};
+}
+
+export default config

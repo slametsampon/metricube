@@ -1,11 +1,9 @@
-// next.config.js
-
-/** @type {import('next').NextConfig} */
 const isProd = process.env.NODE_ENV === 'production';
 
+/** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  swcMinify: true,
+  // swcMinify: true,
   trailingSlash: true,
   images: {
     unoptimized: true,
@@ -24,4 +22,6 @@ const nextConfig = {
   },
 };
 
-module.exports = nextConfig;
+// ❌ JANGAN gunakan: module.exports = nextConfig
+// ✅ GUNAKAN:
+export default nextConfig;

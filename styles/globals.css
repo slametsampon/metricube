@@ -1,0 +1,10 @@
+/* styles/globals.css */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom CSS jika dibutuhkan */
+body {
+  font-family: 'Inter', sans-serif;
+}
