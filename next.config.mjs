@@ -3,7 +3,7 @@ const isProd = process.env.NODE_ENV === 'production';
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  // swcMinify: true,
+  allowedDevOrigins: ['http://192.168.1.10:3000'],
   trailingSlash: true,
   images: {
     unoptimized: true,

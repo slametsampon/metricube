@@ -1,14 +1,11 @@
-// app/layout.tsx
-
+// src/app/layout.tsx
 import '../styles/globals.css';
 import type { ReactNode } from 'react';
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="en">
-      <body className="min-h-screen bg-gray-50 text-gray-900 dark:bg-gray-900 dark:text-white">
-        {children}
-      </body>
+    <html lang="id" className="h-full">
+      <body className="h-full">{children}</body>
     </html>
   );
 }

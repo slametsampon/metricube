@@ -1,16 +1,17 @@
+// tailwind.config.ts
+
 // tailwind.config.js
 
-
-import type { Config } from 'tailwindcss'
-import { fontFamily } from 'tailwindcss/defaultTheme'
-import colors from 'tailwindcss/colors'
+import type { Config } from 'tailwindcss';
+import { fontFamily } from 'tailwindcss/defaultTheme';
+import colors from 'tailwindcss/colors';
 
 const config: Config = {
   content: [
-    './app/**/*.{js,ts,jsx,tsx}',
-    './components/**/*.{js,ts,jsx,tsx}',
-    './layouts/**/*.{js,ts,jsx,tsx}',
-    './lib/**/*.{js,ts,jsx,tsx}',
+    './src/app/**/*.{js,ts,jsx,tsx}',
+    './src/components/**/*.{js,ts,jsx,tsx}',
+    './src/layouts/**/*.{js,ts,jsx,tsx}',
+    './src/lib/**/*.{js,ts,jsx,tsx}',
   ],
   safelist: ['border-primary-500', 'bg-primary-500', 'text-primary-500'],
   darkMode: 'class',
@@ -37,6 +38,6 @@ const config: Config = {
     },
   },
   plugins: [require('@tailwindcss/forms')],
-}
+};
 
-export default config
+export default config;
