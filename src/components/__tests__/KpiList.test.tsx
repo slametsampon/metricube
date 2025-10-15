@@ -4,11 +4,12 @@ import { render, screen, waitFor } from '@testing-library/react';
 import KpiList from '../KpiList';
 import { describe, it, expect, vi } from 'vitest';
 import * as kpiService from '@/services/kpiService';
+import type { KPI } from '@/models/kpi'; // ✅ Import type-nya
 
 describe('KpiList', () => {
   it('renders KPI list from API', async () => {
-    // Mock data
-    const mockKpis = [
+    const mockKpis: KPI[] = [
+      // ✅ Tambahkan type KPI[]
       {
         id: 'rhm',
         name: 'RHM',
@@ -29,13 +30,10 @@ describe('KpiList', () => {
       },
     ];
 
-    // Spy on getKpis() and mock return value
     vi.spyOn(kpiService, 'getKpis').mockResolvedValue(mockKpis);
 
-    // Render component
     render(<KpiList />);
 
-    // Tunggu hingga data muncul
     await waitFor(() => {
       expect(screen.getByText('RHM')).toBeInTheDocument();
       expect(screen.getByText('BFI')).toBeInTheDocument();
@@ -43,16 +41,12 @@ describe('KpiList', () => {
   });
 
   it('handles error from API gracefully', async () => {
-    // Mock getKpis to throw error
     vi.spyOn(kpiService, 'getKpis').mockRejectedValue(new Error('API error'));
-
-    // Spy console.error to suppress during test
     vi.spyOn(console, 'error').mockImplementation(() => {});
 
     render(<KpiList />);
 
     await waitFor(() => {
-      // Karena tidak ada fallback UI, cukup pastikan tidak crash
       expect(screen.queryByRole('list')).not.toBeNull();
     });
   });
