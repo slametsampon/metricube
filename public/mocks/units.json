@@ -1,0 +1,11 @@
+[
+  {
+    "id": "unit-a",
+    "department_id": "dept-maint",
+    "name": "Utility",
+    "location": "Plant 1",
+    "description": "Unit pendukung utilitas",
+    "is_active": true,
+    "created_at": "2024-01-01T00:00:00Z"
+  }
+]

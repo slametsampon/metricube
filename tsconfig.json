@@ -15,11 +15,15 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
+    "types": ["vitest/globals"],
     "paths": {
       "@/components/*": ["components/*"],
-      "@/app/*": ["src/app/*"],
+      "@/app/*": ["app/*"],
+      "@/models/*": ["models/*"],
+      "@/services/*": ["services/*"],
       "@/lib/*": ["lib/*"],
-      "@/styles/*": ["styles/*"]
+      "@/styles/*": ["styles/*"],
+      "@/mocks/*": ["mocks/*"]
     },
     "plugins": [
       {

@@ -1,0 +1,12 @@
+[
+  {
+    "id": "dept-maint",
+    "name": "Maintenance",
+    "created_at": "2024-01-01T00:00:00Z"
+  },
+  {
+    "id": "dept-prod",
+    "name": "Produksi",
+    "created_at": "2024-01-01T00:00:00Z"
+  }
+]

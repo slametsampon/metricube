@@ -1,0 +1,12 @@
+[
+  {
+    "id": "kta-2025-rhm",
+    "kpi_id": "kpi-rhm",
+    "department_id": "dept-maint",
+    "unit_id": "unit-a",
+    "year": 2025,
+    "value": 6000,
+    "note": "Target RHM tahunan",
+    "created_at": "2025-01-01T00:00:00Z"
+  }
+]
