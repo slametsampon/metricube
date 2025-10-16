@@ -1,14 +1,26 @@
 [
   {
-    "id": "dist-2025-01-01",
-    "department_id": "dept-maint",
-    "unit_id": "unit-a",
-    "periode": "2025-01-01",
-    "source_id": "src-pln",
-    "duration_minutes": 120,
+    "id": "log-001",
+    "department_id": "dept-maintenance",
+    "unit_id": "unit-maintenance-1",
+    "periode": "2025-08-09",
+    "source_id": "dist-001",
+    "duration_minutes": 1872,
     "category": "electrical",
-    "description": "Pemadaman listrik akibat gangguan PLN",
-    "created_by": "operator-b",
-    "created_at": "2025-01-01T08:00:00Z"
+    "description": "Shutdown karena power blackout cubicle incoming 20 KV pada OXO 1",
+    "created_by": "system",
+    "created_at": "2025-08-10T00:00:00Z"
+  },
+  {
+    "id": "log-002",
+    "department_id": "dept-maintenance",
+    "unit_id": "unit-maintenance-1",
+    "periode": "2025-01-11",
+    "source_id": "dist-002",
+    "duration_minutes": 1463,
+    "category": "electrical",
+    "description": "Shutdown karena temperature switch TRM kemasukan air",
+    "created_by": "system",
+    "created_at": "2025-01-12T00:00:00Z"
   }
 ]
