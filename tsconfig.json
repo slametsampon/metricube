@@ -23,6 +23,7 @@
       "@/services/*": ["services/*"],
       "@/lib/*": ["lib/*"],
       "@/styles/*": ["styles/*"],
+      "@/data/*": ["data/*"],
       "@/mocks/*": ["mocks/*"]
     },
     "plugins": [
