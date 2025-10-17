@@ -1,16 +1,30 @@
 // src/app/layout.tsx
+
 import '@/styles/globals.css';
 import { Inter } from 'next/font/google';
 import { AppThemeProvider } from '@/components/theme-provider';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Providers } from '@/lib/provider';
+import siteMetadata from '@/data/siteMetadata';
 
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata = {
-  title: 'Metricube',
-  description: 'Monitoring KPI dan Disturbance Maintenance Plant',
+  title: siteMetadata.title,
+  description: siteMetadata.description,
+  icons: {
+    icon: '/favicon.ico',
+    shortcut: '/favicon.ico',
+    apple: '/favicon.png',
+    other: [
+      {
+        rel: 'icon',
+        url: '/favicon.svg',
+        type: 'image/svg+xml',
+      },
+    ],
+  },
 };
 
 export default function RootLayout({

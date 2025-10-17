@@ -1,9 +1,4 @@
 // src/data/headerNavLinks.ts
 
-const headerNavLinks = [
-  { title: 'Dashboard', href: '/dashboard' },
-  { title: 'KPI Records', href: '/kpi-records' },
-  { title: 'Disturbances', href: '/disturbances' },
-  { title: 'Manual Entry', href: '/manual-entry' },
-];
+const headerNavLinks = [{ title: 'Dashboard', href: '/dashboard' }];
 export default headerNavLinks;
