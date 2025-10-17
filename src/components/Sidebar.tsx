@@ -8,17 +8,28 @@ import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import { AnimatePresence, motion } from 'framer-motion';
 
 const menuItems = [
-  { label: 'KPI - Record', href: '/dashboard/kpi-record' },
-  { label: 'Disturbance', href: '/dashboard/disturbance' },
-  { label: 'OPEX', href: '/dashboard/opex' },
+  { label: 'KPI Record', href: '/dashboard/kpi-record' },
+  { label: 'KPI Target', href: '/dashboard/kpi-target' },
+  { label: 'KPI Forecast', href: '/dashboard/kpi-forecast' },
+  { label: 'Disturbance Log', href: '/dashboard/disturbance-log' },
+  { label: 'Disturbance Sources', href: '/dashboard/disturbance-sources' },
+  { label: 'Departments', href: '/dashboard/departments' },
+  { label: 'Units', href: '/dashboard/units' },
+  { label: 'KPI Master', href: '/dashboard/kpi' },
+  { label: 'KPI Target Annual', href: '/dashboard/kpi-target-annual' },
 ];
 
 const entryForms = [
-  { label: 'KPI - Annual', href: '/dashboard/kpi-annual' },
-  { label: 'KPI', href: '/dashboard/kpi' },
-  { label: 'Disturbance', href: '/dashboard/entry-disturbance' },
-  { label: 'OPEX', href: '/dashboard/entry-opex' },
-  { label: 'CAPEX Expenses', href: '/dashboard/entry-capex' },
+  { label: 'New KPI', href: '/dashboard/kpi/new' },
+  { label: 'New KPI Record', href: '/dashboard/entry/kpi-record' },
+  { label: 'New KPI Forecast', href: '/dashboard/entry/kpi-forecast' },
+  { label: 'New Disturbance Log', href: '/dashboard/entry/disturbance-log' },
+  {
+    label: 'New Disturbance Source',
+    href: '/dashboard/entry/disturbance-sources',
+  },
+  { label: 'New Department', href: '/dashboard/departments/new' },
+  { label: 'New Unit', href: '/dashboard/units/new' },
 ];
 
 export default function Sidebar() {
@@ -88,7 +99,7 @@ function SidebarContent({ onLinkClick }: { onLinkClick: () => void }) {
     <div className="space-y-6">
       <div>
         <h2 className="text-sm font-semibold text-gray-500 uppercase mb-2">
-          Sub Menu
+          Data View
         </h2>
         <ul className="space-y-2">
           {menuItems.map((item) => (
@@ -109,7 +120,7 @@ function SidebarContent({ onLinkClick }: { onLinkClick: () => void }) {
 
       <div>
         <h2 className="text-sm font-semibold text-gray-500 uppercase mb-2">
-          Entry Form
+          Entry Forms
         </h2>
         <ul className="space-y-2">
           {entryForms.map((item) => (
