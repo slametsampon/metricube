@@ -21,19 +21,19 @@ export default function DisturbanceSummary() {
   const totalHours = (totalMinutes / 60).toFixed(2);
 
   return (
-    <div className="bg-gradient-to-br from-red-50 to-red-100 dark:from-gray-800 dark:to-gray-700 border border-red-200 dark:border-gray-600 rounded-lg shadow p-5 w-full">
+    <div className="min-w-[250px] w-full sm:w-auto bg-gradient-to-br from-red-50 to-red-100 dark:from-gray-800 dark:to-gray-700 border border-red-200 dark:border-gray-600 rounded-lg shadow p-5">
       <div className="flex items-center space-x-4">
         <div className="bg-red-500 text-white p-2 rounded-full">
           <ExclamationTriangleIcon className="h-6 w-6" />
         </div>
-        <div>
+        <div className="min-w-0">
           <p className="text-sm font-medium text-gray-600 dark:text-gray-300">
             Shutdown Summary
           </p>
           <p className="text-xs text-gray-500 dark:text-gray-400">
             Total waktu shutdown 2025:
           </p>
-          <p className="text-3xl font-extrabold text-red-700 dark:text-white mt-1">
+          <p className="mt-1 font-extrabold text-red-700 dark:text-white text-[clamp(1.5rem,4vw,2.25rem)] truncate max-w-full">
             {totalHours} jam
           </p>
         </div>
