@@ -24,7 +24,7 @@ export interface SiteMetadata {
 
 const siteMetadata: SiteMetadata = {
   title: 'Metricube',
-  version: '1.0.0',
+  version: '1.1.0', //add dashboard
   author: 'Slamet-Sam',
   headerTitle: 'Metricube',
   description: 'Monitoring KPI & Disturbance untuk Maintenance Plant',
