@@ -3,110 +3,196 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { getKpiRecords } from '@/services/kpiRecordService';
+import {
+  getKpiRecords,
+  createKpiRecord,
+  updateKpiRecord,
+} from '@/services/kpiRecordService';
+import { getDepartments } from '@/services/departmentService';
+import { getUnits } from '@/services/unitService';
+
 import type { KpiRecord } from '@/models/kpiRecord';
+import type { Department } from '@/models/department';
+import type { Unit } from '@/models/unit';
+
+import KPIRecordForm from '@/components/dashboard/KPIRecordForm';
+import KPIRecordTable from '@/components/dashboard/KPIRecordTable';
+
+type FormDataState = {
+  periode: string;
+  value: string;
+  note: string;
+  department_id: string;
+  unit_id: string;
+};
 
 export default function KPIRecordPage() {
   const [records, setRecords] = useState<KpiRecord[]>([]);
+  const [departments, setDepartments] = useState<Department[]>([]);
+  const [units, setUnits] = useState<Unit[]>([]);
+  const [editingId, setEditingId] = useState<string | null>(null);
+  const [formData, setFormData] = useState<FormDataState>({
+    periode: '',
+    value: '',
+    note: '',
+    department_id: '',
+    unit_id: '',
+  });
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    async function fetchRecords() {
+    async function loadData() {
       try {
-        const data = await getKpiRecords();
-        setRecords(data);
+        const [kpi, dept, unit] = await Promise.all([
+          getKpiRecords(),
+          getDepartments(),
+          getUnits(),
+        ]);
+        setRecords(kpi);
+        setDepartments(dept);
+        setUnits(unit);
       } catch (err) {
-        setError('Gagal memuat data KPI Records');
         console.error(err);
+        setError('Gagal memuat data');
       } finally {
         setLoading(false);
       }
     }
-    fetchRecords();
+
+    loadData();
   }, []);
+
+  function handleChange(
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >
+  ) {
+    const { name, value } = e.target;
+
+    setFormData((prev) => {
+      if (name === 'department_id') {
+        return { ...prev, department_id: value, unit_id: '' };
+      }
+      return { ...prev, [name]: value };
+    });
+  }
+
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+
+    if (
+      !formData.periode ||
+      !formData.value ||
+      !formData.department_id ||
+      !formData.unit_id
+    ) {
+      alert('Semua field wajib diisi');
+      return;
+    }
+
+    try {
+      if (editingId) {
+        const updated = await updateKpiRecord(editingId, {
+          ...formData,
+          value: parseFloat(formData.value),
+        });
+        setRecords((prev) =>
+          prev.map((r) => (r.id === editingId ? updated : r))
+        );
+      } else {
+        const newRecord: KpiRecord = {
+          id: `rec-${Date.now()}`,
+          kpi_id: 'kpi-001',
+          department_id: formData.department_id,
+          unit_id: formData.unit_id,
+          periode: formData.periode,
+          value: parseFloat(formData.value),
+          note: formData.note,
+          source: 'manual',
+          created_by: 'system',
+          created_at: new Date().toISOString(),
+        };
+        const created = await createKpiRecord(newRecord);
+        setRecords((prev) => [created, ...prev]);
+      }
+
+      setFormData({
+        periode: '',
+        value: '',
+        note: '',
+        department_id: '',
+        unit_id: '',
+      });
+      setEditingId(null);
+    } catch (err: any) {
+      alert(`Gagal menyimpan: ${err.message}`);
+    }
+  }
+
+  function handleEdit(record: KpiRecord) {
+    setFormData({
+      periode: record.periode,
+      value: record.value.toString(),
+      note: record.note,
+      department_id: record.department_id ?? '',
+      unit_id: record.unit_id ?? '',
+    });
+    setEditingId(record.id);
+  }
+
+  function handleDelete(id: string) {
+    if (confirm('Hapus data ini?')) {
+      setRecords((prev) => prev.filter((r) => r.id !== id));
+      if (editingId === id) {
+        setFormData({
+          periode: '',
+          value: '',
+          note: '',
+          department_id: '',
+          unit_id: '',
+        });
+        setEditingId(null);
+      }
+    }
+  }
 
   return (
     <div className="space-y-6">
       <h1 className="text-xl font-semibold">KPI Record</h1>
 
-      {/* Form Create/Edit */}
-      <div className="bg-white p-6 rounded-md shadow space-y-4 max-w-md">
-        <h2 className="text-lg font-semibold mb-2">Entry Form</h2>
-        <form className="space-y-4">
-          <div>
-            <label className="block text-sm font-medium mb-1">Periode</label>
-            <input
-              type="date"
-              name="periode"
-              className="w-full border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-            />
-          </div>
+      <KPIRecordForm
+        formData={formData}
+        onChange={handleChange}
+        onSubmit={handleSubmit}
+        onCancel={() => {
+          setFormData({
+            periode: '',
+            value: '',
+            note: '',
+            department_id: '',
+            unit_id: '',
+          });
+          setEditingId(null);
+        }}
+        editingId={editingId}
+        departments={departments}
+        units={units}
+      />
 
-          <div>
-            <label className="block text-sm font-medium mb-1">Value</label>
-            <input
-              type="number"
-              name="value"
-              className="w-full border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-            />
-          </div>
-
-          <div>
-            <label className="block text-sm font-medium mb-1">Note</label>
-            <textarea
-              name="note"
-              className="w-full border border-gray-300 rounded px-3 py-2 text-sm resize-none focus:outline-none focus:ring-2 focus:ring-blue-500"
-              rows={3}
-            />
-          </div>
-
-          <button
-            type="submit"
-            className="inline-block px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition"
-          >
-            Simpan
-          </button>
-        </form>
-      </div>
-
-      {/* List Entries */}
-      <div className="bg-white p-4 rounded-md shadow">
-        <h2 className="text-md font-semibold mb-2">List Record</h2>
-
-        {loading && <p>Loading...</p>}
-        {error && <p className="text-red-600">{error}</p>}
-
-        {!loading && !error && (
-          <table className="w-full table-auto text-sm">
-            <thead>
-              <tr className="bg-gray-100">
-                <th className="p-2 text-left">Periode</th>
-                <th className="p-2 text-left">Value</th>
-                <th className="p-2 text-left">Note</th>
-                <th className="p-2 text-left">Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              {records.map((rec) => (
-                <tr key={rec.id} className="border-t">
-                  <td className="p-2">{rec.periode}</td>
-                  <td className="p-2">{rec.value}</td>
-                  <td className="p-2">{rec.note}</td>
-                  <td className="p-2">
-                    <button className="text-blue-600 hover:underline mr-2">
-                      Edit
-                    </button>
-                    <button className="text-red-600 hover:underline">
-                      Delete
-                    </button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        )}
-      </div>
+      {loading ? (
+        <p className="text-sm text-gray-500">Memuat data...</p>
+      ) : error ? (
+        <p className="text-red-600">{error}</p>
+      ) : (
+        <KPIRecordTable
+          records={records}
+          departments={departments}
+          units={units}
+          onEdit={handleEdit}
+          onDelete={handleDelete}
+        />
+      )}
     </div>
   );
 }

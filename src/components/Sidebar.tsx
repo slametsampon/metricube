@@ -9,7 +9,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 
 const menuItems = [
   { label: 'KPI Record', href: '/dashboard/kpi-record' },
-  { label: 'KPI Target', href: '/dashboard/kpi-target' },
+  { label: 'KPI Master', href: '/dashboard/kpi-master' },
   { label: 'KPI Forecast', href: '/dashboard/kpi-forecast' },
   { label: 'Disturbance Log', href: '/dashboard/disturbance-log' },
   { label: 'Disturbance Sources', href: '/dashboard/disturbance-sources' },

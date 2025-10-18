@@ -7,5 +7,14 @@
     "description": "Unit utama untuk pemeliharaan aset",
     "is_active": true,
     "created_at": "2025-01-01T00:00:00Z"
+  },
+  {
+    "id": "unit-syngas",
+    "department_id": "dept-production",
+    "name": "Unit Syngas",
+    "location": "Plant",
+    "description": "Unit syntetic Gas",
+    "is_active": true,
+    "created_at": "2025-01-01T00:00:00Z"
   }
 ]

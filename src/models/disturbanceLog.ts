@@ -19,3 +19,19 @@ export interface DisturbanceLog {
   created_by?: string;
   created_at: string;
 }
+
+export type DisturbanceLogPayload = Omit<
+  DisturbanceLog,
+  'id' | 'created_at' | 'created_by'
+>;
+
+export const DISTURBANCE_CATEGORIES: {
+  label: string;
+  value: DisturbanceCategory;
+}[] = [
+  { label: 'Electrical', value: 'electrical' },
+  { label: 'Mechanical', value: 'mechanical' },
+  { label: 'Instrument', value: 'instrument' },
+  { label: 'Utility', value: 'utility' },
+  { label: 'Other', value: 'other' },
+];

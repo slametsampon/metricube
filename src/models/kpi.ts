@@ -10,4 +10,5 @@ export interface KPI {
   type: KpiType;
   is_active: boolean;
   created_at: string;
+  value: number | boolean | string; // ⬅️ nilai tergantung type
 }
