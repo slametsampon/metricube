@@ -60,13 +60,13 @@ export default function DisturbanceTable({
                     className="text-blue-600 hover:underline mr-2"
                     onClick={() => onEdit(log)}
                   >
-                    Edit
+                    {'✏️'}
                   </button>
                   <button
                     className="text-red-600 hover:underline"
                     onClick={() => onDelete(log.id)}
                   >
-                    Delete
+                    {'🗑️'}
                   </button>
                 </td>
               </tr>

@@ -2,16 +2,19 @@
   {
     "id": "dept-maintenance",
     "name": "Maintenance",
+    "description": "Responsible for machinery maintenance and repairs.",
     "created_at": "2025-01-01T00:00:00Z"
   },
   {
     "id": "dept-hrdga",
     "name": "HRDGA",
+    "description": "Handles human resources, general affairs, and administration.",
     "created_at": "2025-01-01T00:00:00Z"
   },
   {
     "id": "dept-production",
     "name": "Production",
+    "description": "Oversees the production line and manufacturing process.",
     "created_at": "2025-01-01T00:00:00Z"
   }
 ]

@@ -44,13 +44,13 @@ export default function KPIAnnualTable({ data, onEdit, onDelete }: TableProps) {
                   onClick={() => onEdit(item)}
                   className="text-blue-600 hover:underline"
                 >
-                  Edit
+                  {'✏️'}
                 </button>
                 <button
                   onClick={() => onDelete(item.id)}
                   className="text-red-600 hover:underline"
                 >
-                  Delete
+                  {'🗑️'}
                 </button>
               </td>
             </tr>

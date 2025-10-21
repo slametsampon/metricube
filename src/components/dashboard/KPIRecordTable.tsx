@@ -56,13 +56,13 @@ export default function KPIRecordTable({
                   onClick={() => onEdit(rec)}
                   className="text-blue-600 hover:underline mr-2"
                 >
-                  Edit
+                  {'✏️'}
                 </button>
                 <button
                   onClick={() => onDelete(rec.id)}
                   className="text-red-600 hover:underline"
                 >
-                  Delete
+                  {'🗑️'}
                 </button>
               </td>
             </tr>

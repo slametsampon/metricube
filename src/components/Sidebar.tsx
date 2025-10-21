@@ -99,31 +99,10 @@ function SidebarContent({ onLinkClick }: { onLinkClick: () => void }) {
     <div className="space-y-6">
       <div>
         <h2 className="text-sm font-semibold text-gray-500 uppercase mb-2">
-          Data View
+          Sub Menu
         </h2>
         <ul className="space-y-2">
           {menuItems.map((item) => (
-            <li key={item.href}>
-              <Link
-                href={item.href}
-                onClick={onLinkClick}
-                className="block text-sm text-blue-600 hover:underline transition-all"
-              >
-                {item.label}
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </div>
-
-      <hr className="border-gray-300" />
-
-      <div>
-        <h2 className="text-sm font-semibold text-gray-500 uppercase mb-2">
-          Entry Forms
-        </h2>
-        <ul className="space-y-2">
-          {entryForms.map((item) => (
             <li key={item.href}>
               <Link
                 href={item.href}

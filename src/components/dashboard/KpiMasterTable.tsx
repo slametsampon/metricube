@@ -41,13 +41,13 @@ export default function KpiMasterTable({ data, onEdit, onDelete }: Props) {
                     onClick={() => onEdit(kpi)}
                     className="text-blue-600 hover:underline"
                   >
-                    Edit
+                    {'✏️'}
                   </button>
                   <button
                     onClick={() => onDelete(kpi.id)}
                     className="text-red-600 hover:underline"
                   >
-                    Hapus
+                    {'🗑️'}
                   </button>
                 </div>
               </td>
